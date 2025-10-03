@@ -1,10 +1,15 @@
-use enum_type::*;
+use error::*;
 
 #[test]
-fn test_color() {
-    assert_eq!(Color::Red, Color::Red);
-    assert!(Color::Green != Color::Blue);
+fn test_div() {
+    assert_eq!(div(1, 0), Err(MathError::DivByZero));
+}
 
-    // Check if it compiles
-    let _ = Color::Rgba(0, 255, 0, 0.5);
+#[test]
+fn test_get() {
+    let v = vec![1, 2, 3];
+    assert_eq!(get(&v, 0, 0), 1);
+    assert_eq!(get(&v, 1, 0), 2);
+    assert_eq!(get(&v, 2, 0), 3);
+    assert_eq!(get(&v, 3, 0), 0);
 }

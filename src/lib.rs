@@ -1,8 +1,16 @@
 #[derive(Debug, PartialEq)]
-pub enum Color {
-    Red,
-    Green,
-    Blue,
-    Rgba(u8, u8, u8, f32),
+pub enum MathError {
+    DivByZero,
 }
- // enum 2 
+
+pub fn div(x: u32, y: u32) -> Result<u32, MathError> {
+    if y == 0 {
+        Err(MathError::DivByZero)
+    } else {
+        Ok(x / y)
+    }
+}
+
+pub fn get(v: &[u32], i: usize, default_val: u32) -> u32 {
+    v.get(i).copied().unwrap_or(default_val)
+}
